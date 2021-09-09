@@ -1,3 +1,3 @@
 # CampgroundApp
-show campgrounds info
+Show campgrounds infos.
 Express,EJS with MongoBD
