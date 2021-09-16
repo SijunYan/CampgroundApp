@@ -1,0 +1,114 @@
+<% layout('./layouts/boilerplate') -%>
+    <div class="">
+        <div class="my-5 row">
+            <div class="card col-6 px-0">
+                <img src="<%= campground.image %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= campground.title %>
+                    </h5>
+
+                    <p class="card-text text-secondary">
+                        <%= campground.location %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p class="text-secondary">
+                            <%= campground.description %>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        Price: <p class="text-secondary">$<%= campground.price %> per night</p>
+                    </li>
+
+                </ul>
+                <div class="card-body">
+
+                    <a class="card-link btn btn-primary" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                    <a class="card-link btn btn-primary" href="/campgrounds">Back</a>
+                    <form class="d-inline" action="/campgrounds/<%= campground._id %>?_method=delete" method="POST">
+                        <button class="card-link btn btn-danger float-end " type="button" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Delete</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-danger" id="exampleModalLabel">Danger!</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Be serious!
+                                        <br>
+                                        You will delete all the data related to <%= campground.title %>!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="col-6 mt-3 px-0">
+                <div class="card-body">
+                    <h5 class=" card-title">Reviews:</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/campgrounds/<%= campground._id %>/review" method="post" class="needs-validation"
+                        novalidate>
+                        <div>
+                            <label class="form-label" for="rating">Rating:</label>
+                            <input class="form-range" type="range" name="rating" min="0" max="5" value="3">
+                        </div>
+                        <div>
+                            <label class="form-label" for="review">Review:</label>
+                            <textarea class="form-control" name="body" id="review" cols="30" rows="3"
+                                required></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <button class="btn btn-success my-3">Submit</button>
+                    </form>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <% for(let review of campground.reviews){ %>
+
+                        <div class="card-body">
+                            <li class="list-group-item">
+                                <p class="card-text d-inline">
+                                    Rating: <%= review.rating %>
+                                </p>
+                                <form class="d-inline float-end"
+                                    action="/campgrounds/<%= campground.id %>/review/<%= review._id %>?_method=Delete"
+                                    method="post">
+                                    <button class="btn-close" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Delete this review"></button>
+                                </form>
+                                <p class="card-text">
+                                    <%= review.body %>
+                                </p>
+
+                            </li>
+                        </div>
+
+                        <% } %>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>

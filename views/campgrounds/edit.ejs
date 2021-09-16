@@ -1,0 +1,38 @@
+<% layout('./layouts/boilerplate') -%>
+    <h1 class="text-center py-4">Edit</h1>
+    <div class="col-4 offset-4">
+        <form action="/campgrounds/<%=  camp._id %>?_method=patch" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="title">Camp Title</label>
+                <input class="form-control" name="title" id="title" type="text" value="<%=  camp.title %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" name="location" id="location" type="text" value="<%=  camp.location %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="iamge">Image URL</label>
+                <input class="form-control" name="image" id="image" type="text" value="<%=  camp.image %>">
+            </div>
+            <div class=" mb-3">
+                <label class="form-label" for="price">Price</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="text" id="price" name="price" class="form-control" aria-label=""
+                        value="<%=  camp.price %>">
+
+                </div>
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" type="text"
+                    style="height: 150px;"><%=  camp.description %></textarea>
+            </div>
+
+
+            <button class="btn btn-primary px-4">Save</button>
+
+        </form>
+        <form action="/campgrounds/<%=  camp._id %>"><button class="btn btn-primary px-3">Cancel</button></form>
+    </div>
