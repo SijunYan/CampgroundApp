@@ -6,6 +6,7 @@ const Campground = require('../models/campground.js')
 const cities = require('./cities.js');
 const { descriptors, places } = require('./seedHelpers.js');
 
+
 // connect database
 async function main() {
     await mongoose.connect('mongodb://localhost:27017/campground');
@@ -23,11 +24,11 @@ const seedDB = async () => {
             title: `${descriptors[Math.floor(Math.random() * descriptors.length)]}${places[Math.floor(Math.random() * places.length)]}`,
             image: 'https://source.unsplash.com/collection/72876353',
             description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat suscipit maiores quae aliquid. Maiores recusandae vel totam. Laborum consequuntur, quidem doloremque nesciunt accusamus amet, error sed dolor voluptates mollitia non?',
-            price: Math.floor(Math.random() * 20) + 10
+            price: Math.floor(Math.random() * 20) + 10,
+            author: '6149310d96f5db227c5e06d3'
         });
         await camp.save();
     }
-
 };
 
 seedDB()
